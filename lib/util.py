@@ -424,10 +424,10 @@ def get_temporary_copy(path: Union[str, Path]) -> Path:
 
 
 def get_python():
-    python = Path('python3.9')
+    python = Path('python3.10')
     return str(python) if python.exists() else 'python'
 
 def get_catboost_config(real_data_path, is_cv=False):
     ds_name = Path(real_data_path).name
-    C = load_json(f'tuned_models/catboost/{ds_name}_cv.json')
+    C = load_json(f'tab-ddpm/tuned_models/catboost/{ds_name}_cv.json')
     return C
