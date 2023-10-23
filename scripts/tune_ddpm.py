@@ -22,11 +22,11 @@ eval_type = args.eval_type
 assert eval_type in ('merged', 'synthetic')
 prefix = str(args.prefix)
 
-pipeline = f'scripts/pipeline.py'
-base_config_path = f'exp/{ds_name}/config.toml'
-parent_path = Path(f'exp/{ds_name}/')
-exps_path = Path(f'exp/{ds_name}/many-exps/') # temporary dir. maybe will be replaced with tempdiвdr
-eval_seeds = f'scripts/eval_seeds.py'
+pipeline = f'tab-ddpm/scripts/pipeline.py'
+base_config_path = f'tab-ddpm/exp/{ds_name}/config.toml'
+parent_path = Path(f'tab-ddpm/exp/{ds_name}/')
+exps_path = Path(f'tab-ddpm/exp/{ds_name}/many-exps/') # temporary dir. maybe will be replaced with tempdiвdr
+eval_seeds = f'tab-ddpm/scripts/eval_seeds.py'
 
 os.makedirs(exps_path, exist_ok=True)
 
@@ -82,7 +82,7 @@ def objective(trial):
 
     lib.dump_config(base_config, exps_path / 'config.toml')
 
-    subprocess.run(['python3.9', f'{pipeline}', '--config', f'{exps_path / "config.toml"}', '--train', '--change_val'], check=True)
+    subprocess.run(['python3.10', f'{pipeline}', '--config', f'{exps_path / "config.toml"}', '--train', '--change_val'], check=True)
 
     n_datasets = 5
     score = 0.0
@@ -120,8 +120,8 @@ os.makedirs(parent_path / f'{prefix}_best', exist_ok=True)
 lib.dump_config(best_config, best_config_path)
 lib.dump_json(optuna.importance.get_param_importances(study), parent_path / f'{prefix}_best/importance.json')
 
-subprocess.run(['python3.9', f'{pipeline}', '--config', f'{best_config_path}', '--train', '--sample'], check=True)
+subprocess.run(['python3.10', f'{pipeline}', '--config', f'{best_config_path}', '--train', '--sample'], check=True)
 
 if args.eval_seeds:
     best_exp = str(parent_path / f'{prefix}_best/config.toml')
-    subprocess.run(['python3.9', f'{eval_seeds}', '--config', f'{best_exp}', '10', "ddpm", eval_type, args.eval_model, '5'], check=True)
+    subprocess.run(['python3.10', f'{eval_seeds}', '--config', f'{best_exp}', '10', "ddpm", eval_type, args.eval_model, '5'], check=True)
