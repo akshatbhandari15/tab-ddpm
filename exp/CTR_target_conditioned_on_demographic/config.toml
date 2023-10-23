@@ -1,5 +1,5 @@
 seed = 0
-parent_dir = "exp/CTR_target_conditioned_on_demographic/check"
+parent_dir = "tab-ddpm/exp/CTR_target_conditioned_on_demographic/check"
 real_data_path = "data/CTR_target_conditioned_on_demographic/preproccessed"
 model_type = "mlp"
 num_numerical_features = 5
