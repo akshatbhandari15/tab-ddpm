@@ -2,7 +2,7 @@ seed = 0
 parent_dir = "tab-ddpm/exp/CTR_target_conditioned_on_demographic/check"
 real_data_path = "digix-global-ai-challenge/preproccessed"
 model_type = "mlp"
-num_numerical_features = 5
+num_numerical_features = 2
 device = "cuda:0"
 
 [model_params]
