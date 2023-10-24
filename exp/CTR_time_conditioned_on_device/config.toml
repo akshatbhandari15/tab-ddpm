@@ -1,14 +1,14 @@
 seed = 0
-parent_dir = "tab-ddpm/exp/CTR_target_conditioned_on_demographic/check"
+parent_dir = "tab-ddpm/exp/CTR_time_conditioned_on_device/check"
 real_data_path = "digix-global-ai-challenge/preproccessed"
 model_type = "mlp"
 num_numerical_features = 2
 device = "cuda:0"
 
 [model_params]
-is_y_cond = true
+is_y_cond = false
 d_in = 11
-num_classes = 2
+num_classes = 0
 
 [model_params.rtdl_params]
 d_layers = [
